@@ -1,0 +1,1 @@
+本文档同级目录下 `.gitignore` 中的文件可在 [Ayusummer/FastAPI_learning: FastAPI学习随笔 (github.com)](https://github.com/Ayusummer/FastAPI_learning) 中找到
