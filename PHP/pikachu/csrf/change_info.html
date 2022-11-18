@@ -19,12 +19,18 @@
             method="post"
             action="http://[host]:[port]/vul/csrf/csrfpost/csrf_post_edit.php"
         >
-            <input type="text" name="sex" value="ChangeSex" />
-            <input type="text" name="phonenum" value="ChangePhoneNum" />
-            <input type="text" name="add" value="ChangeAddress" />
-            <input type="text" name="email" value="ChangeEmail" />
-
-            <input id="postsubmit" type="submit" name="submit" value="submit" />
+            <label>
+                <input type="text" name="sex" value="ChangeSex" />
+                <input type="text" name="phonenum" value="ChangePhoneNum" />
+                <input type="text" name="add" value="ChangeAddress" />
+                <input type="text" name="email" value="ChangeEmail" />
+                <input
+                    id="postsubmit"
+                    type="submit"
+                    name="submit"
+                    value="submit"
+                />
+            </label>
         </form>
     </body>
 </html>
