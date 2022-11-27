@@ -1,0 +1,16 @@
+POST /vul/sqli/sqli_id.php HTTP/1.1
+Host: 192.168.2.31:9221
+Content-Length: 30
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+Origin: http://192.168.2.31:9221
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.5304.107 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Referer: http://192.168.2.31:9221/vul/sqli/sqli_id.php
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: PHPSESSID=9tru1fbi3fto5uguhu9fd395ie
+Connection: close
+
+id=1&submit=%E6%9F%A5%E8%AF%A2
