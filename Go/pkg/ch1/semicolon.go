@@ -1,4 +1,4 @@
-package hello
+package ch1
 
 import "fmt"
 
