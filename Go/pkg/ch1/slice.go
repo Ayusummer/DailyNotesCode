@@ -1,4 +1,4 @@
-package cmd_param
+package ch1
 
 import "fmt"
 

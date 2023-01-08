@@ -1,4 +1,4 @@
-package cmd_param
+package ch1
 
 import (
 	"fmt"
@@ -8,6 +8,7 @@ import (
 
 // 类似于 echo, 默认分隔符为一个空格
 func Print_cmd_args() {
+	fmt.Println("echo 基本写法:")
 	// 定义一个字符串切片, 用于存储命令行参数
 	var getParams string
 	// 分隔符为一个空格
@@ -21,6 +22,7 @@ func Print_cmd_args() {
 
 // 使用切片构造 echo 语句
 func Echo_Slice() {
+	fmt.Println("echo 切片写法:")
 	var getParams, sep string
 	sep = " "
 	for _, arg := range os.Args[1:] {
@@ -31,10 +33,12 @@ func Echo_Slice() {
 
 // 使用 strings.Join() 方法构造 echo 语句
 func Echo_Join() {
+	fmt.Println("echo strings.Join() 写法:")
 	fmt.Println(strings.Join(os.Args[1:], " "))
 }
 
 // 不考虑输出格式, 直接打印 os.Args 切片
 func Echo_direct_print_slice() {
+	fmt.Println("echo 直接打印切片:")
 	fmt.Println(os.Args[1:])
 }
