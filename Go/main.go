@@ -1,9 +1,11 @@
 package main
 
 import (
-	"GoLearning/pkg/ch1"
+	"fmt"
+	"math/rand"
 )
 
 func main() {
-	ch1.Dup3()
+	// ch1.LissajousMain()
+	fmt.Println(rand.Float64())
 }
