@@ -1,0 +1,17 @@
+[tool.pdm]
+[tool.pdm.scripts]
+start = "python main.py"
+
+
+[project]
+name = ""
+version = ""
+description = ""
+authors = [
+    {name = "233Official", email = "ayusummer233@qq.com"},
+]
+dependencies = [
+    "rocketry>=2.5.1",
+]
+requires-python = ">=3.10"
+license = {text = "MIT"}
