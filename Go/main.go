@@ -5,5 +5,6 @@ import (
 )
 
 func main() {
-	ch1.PrintResponseBody()
+	// ch1.PrintResponseBody()
+	ch1.PrintResponseBody_Copy()
 }
