@@ -11,5 +11,10 @@ public class test {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        try{
+            "v".getClass().forName("java.lang.Runtime").getRuntime().exec("calc.exe");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
