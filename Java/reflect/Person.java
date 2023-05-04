@@ -12,4 +12,10 @@ public class Person {
     public void work(){
         System.out.println("I'm working!");
     }
+
+    public static void main(String[] args) {
+        Person p = new Person();
+        p.say();
+        p.work();
+    }
 }

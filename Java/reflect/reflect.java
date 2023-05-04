@@ -27,4 +27,18 @@ public class reflect {
         System.out.println(c3.getName());
     }
 
+
+
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+        reflect r = new reflect();
+        r.by_getClass();
+        r.by_class();
+        try {
+            r.by_forName();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
