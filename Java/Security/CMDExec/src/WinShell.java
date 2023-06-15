@@ -1,4 +1,4 @@
-package rce;
+
 
 // BufferedReader 是缓冲字符输入流。它继承于Reader。
 import java.io.BufferedReader;
