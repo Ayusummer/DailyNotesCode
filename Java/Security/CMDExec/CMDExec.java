@@ -21,26 +21,25 @@ public class CMDExec {
 //        ((Runtime) Class.forName("java.lang.Runtime").getMethod("getRuntime").invoke(null)).exec("calc");
 
         // 另一种将反射写法写为一行的方式
-//        "va".getClass().forName("java.lang.Runtime").getMethod("exec", String.class).invoke(
-//                "va".getClass().forName("java.lang.Runtime").getMethod("getRuntime").invoke(null),
-//                "calc"
-//        );
         Class.forName("java.lang.Runtime").getMethod("exec", String.class).invoke(
                 Class.forName("java.lang.Runtime").getMethod("getRuntime").invoke(null),
                 "calc"
         );
-
-//        // 一行反射, 尝试拆分字符串
-//        Class.forName("java"+".lang.Runtime").getMethod("exec", String.class).invoke(
-//                Class.forName("java.la"+"ng.Runtime").getMethod("getRuntime").invoke(null),
+//        "va".getClass().forName("java.lang.Runtime").getMethod("exec", String.class).invoke(
+//                "va".getClass().forName("java.lang.Runtime").getMethod("getRuntime").invoke(null),
 //                "calc"
 //        );
 
 
-        // exec 承接多个参数, 在当前目录新建一个 success 空文件 : type nul > success
-        Class.forName("java.lang.Runtime").getMethod("exec", String.class).invoke(
-                Class.forName("java.lang.Runtime").getMethod("getRuntime").invoke(null),
-                new String[]{"cmd", "/c", "type", "nul", ">", "success"}
-        );
+        // 一行反射, 尝试拆分字符串
+//        Class.forName("java"+".lang.Runtime").getMethod("exec", String.class).invoke(
+//                Class.forName("java.la"+"ng.Runtime").getMethod("getRuntime").invoke(null),
+//                "calc"
+//        );
+//        "va".getClass().forName("java.lan"+"g.Runtime").getMethod("exec", String.class).invoke(
+//                "va".getClass().forName("java.l"+"ang.Runtime").getMethod("getRuntime").invoke(null),
+//                "calc"
+//        );
+
     }
 }
