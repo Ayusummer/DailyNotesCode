@@ -1,5 +1,3 @@
-package reflect;
-
 public class Person {
     private String name = "Jacob";
     public int age = 20;

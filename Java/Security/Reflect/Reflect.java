@@ -1,6 +1,4 @@
-package reflect;
-
-public class reflect {
+public class Reflect {
     // 1. 通过对象调用 getClass() 方法获取 Person 的 Class;
     // 通常用于传入一个 Object 对象, 但是不知道具体是什么类, 通过 getClass() 方法获取 Class 对象;
     public void by_getClass() {
@@ -23,7 +21,7 @@ public class reflect {
     // 用的最多, 但可能抛出 ClassNotFoundException 异常
     public void by_forName() throws ClassNotFoundException {
         System.out.println("3.通过 Class 类的静态方法 forName(String className) 得到");
-        Class c3 = Class.forName("reflect.Person");
+        Class c3 = Class.forName("Person");
         System.out.println(c3.getName());
     }
 
@@ -31,7 +29,7 @@ public class reflect {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
-        reflect r = new reflect();
+        Reflect r = new Reflect();
         r.by_getClass();
         r.by_class();
         try {
@@ -40,5 +38,5 @@ public class reflect {
             e.printStackTrace();
         }
     }
-
 }
+
