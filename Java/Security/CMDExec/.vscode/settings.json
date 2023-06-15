@@ -5,7 +5,9 @@
         "lib/**/*.jar"
     ],
     // 使用 /home/ayusummer/software/java/jdk8u372-b07
-    "java.jdt.ls.java.home": "/home/ayusummer/software/java/jdk8u372-b07",
+    // "java.jdt.ls.java.home": "/home/ayusummer/software/java/jdk8u372-b07",
     // "java.jdt.ls.java.home": "/usr/lib/jvm/java-17-openjdk-amd64",
+    "java.jdt.ls.java.home": "C:/Program Files/Java/jdk1.8.0_351",
+
 
 }
