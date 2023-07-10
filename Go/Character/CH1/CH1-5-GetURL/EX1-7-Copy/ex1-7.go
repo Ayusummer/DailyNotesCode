@@ -5,7 +5,7 @@
 使用这个函数替代掉例子中的 ioutil.ReadAll 来拷贝响应结构体到 os.Stdout，避免申请一个缓冲区（例子中的b）来存储。
 记得处理io.Copy返回结果中的错误。
 */
-package ch1
+package main
 
 import (
 	"fmt"
@@ -33,4 +33,8 @@ func PrintResponseBody_Copy() {
 		log.Printf("Copied %d bytes", n)
 		fmt.Printf("Copied %d bytes", n)
 	}
+}
+
+func main() {
+	PrintResponseBody_Copy()
 }

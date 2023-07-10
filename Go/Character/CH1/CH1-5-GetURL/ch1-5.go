@@ -1,4 +1,4 @@
-package ch1
+package main
 
 import (
 	"fmt"
@@ -24,4 +24,8 @@ func PrintResponseBody() {
 		fmt.Printf("%s", b) // 打印响应体
 	}
 
+}
+
+func main() {
+	PrintResponseBody()
 }

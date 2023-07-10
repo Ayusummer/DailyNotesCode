@@ -1,4 +1,4 @@
-package ch1
+package main
 
 import (
 	"fmt"
@@ -41,4 +41,11 @@ func Echo_Join() {
 func Echo_direct_print_slice() {
 	fmt.Println("echo 直接打印切片:")
 	fmt.Println(os.Args[1:])
+}
+
+func main() {
+	Print_cmd_args()
+	Echo_Slice()
+	Echo_Join()
+	Echo_direct_print_slice()
 }

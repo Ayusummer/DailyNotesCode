@@ -1,4 +1,4 @@
-package ch1
+package main
 
 import "fmt"
 
@@ -7,4 +7,8 @@ func SemiColon() {
 	b := 2
 	c := a + b
 	fmt.Println(c)
+}
+
+func main() {
+	SemiColon()
 }

@@ -2,7 +2,7 @@
 练习 1.9
 修改 fetch 打印出HTTP协议的状态码，可以从 resp.Status 变量得到该状态码。
 */
-package ch1
+package main
 
 import (
 	"fmt"
@@ -37,4 +37,8 @@ func PrintResponseBody_Copy_Prefix_Status() {
 		}
 		fmt.Printf("Copied %d bytes \n", n)
 	}
+}
+
+func main() {
+	PrintResponseBody_Copy_Prefix_Status()
 }

@@ -1,4 +1,4 @@
-package ch1
+package main
 
 import (
 	"image"
@@ -51,4 +51,8 @@ func lissajous(out io.Writer) {
 	}
 	// EncodeAll 函数将生成的  gif anim 写入到 out 中
 	gif.EncodeAll(out, &anim) // NOTE: ignoring encoding errors
+}
+
+func main() {
+	LissajousMain()
 }

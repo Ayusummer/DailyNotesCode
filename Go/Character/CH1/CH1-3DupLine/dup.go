@@ -1,4 +1,4 @@
-package ch1
+package main
 
 import (
 	"bufio"
@@ -91,4 +91,10 @@ func Dup3() {
 	for line, n := range counts {
 		fmt.Printf("%d\t%s\n", n, line)
 	}
+}
+
+func main() {
+	Dup1()
+	// Dup2()
+	// Dup3()
 }
