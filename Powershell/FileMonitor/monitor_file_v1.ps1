@@ -1,9 +1,16 @@
+<#  监控目标目录下的文件变动, 并将变动的文件复制到指定目录下
+    如果文件拷贝没有成功, 或是在 Powershell 中运行此脚本显示无法加载文件, 未对文件惊醒数字签名,无法在当前系统上运行该脚本
+    请使用 ByPass 模式运行脚本, 具体命令大致如下:
+    powershell -ExecutionPolicy Bypass -File xxx\xxx\monitor_file_v1.ps1
+    
+    变量前最好加上作用域, 尤其是全局变量, 否则有时运行脚本时函数中调用不到外层的变量
+#>
 # 监控的目录
-$targetDir = "E:\temp\testDir"
+$Global:targetDir = "C:/Users"
 # log文件路径为当前目录下的log.txt
-$logFile = ".\log.txt"
+$Global:logFile = (Get-Location).Path + "\log.txt"
 # 在当前目录下新建一个 monitor_cache 目录用于存放监控的文件
-$cacheDir = ".\monitor_cache"
+$Global:cacheDir = (Get-Location).Path + "\monitor_cache"
 if (!(Test-Path $cacheDir)) {
     New-Item -ItemType Directory -Force -Path $cacheDir
 }
@@ -21,7 +28,7 @@ $commonAction = {
     $path = $Event.SourceEventArgs.FullPath
     $changeType = $Event.SourceEventArgs.ChangeType
     # 记录下时间以及变动的文件信息
-    $date = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    $date = Get-Date -Format "yyyy-MM-dd-HH-mm-ss"
     # 日志信息
     $log = "$date File $path was $changeType"
     # 输出到控制台
@@ -34,6 +41,7 @@ $commonAction = {
         # 生成新的文件路径，替换掉冒号、空格和反斜杠等特殊字符，避免路径错误或冲突
         $newPath = $cacheDir + "\" + ($date + "_" + $changeType + "_" + $path.Replace($targetDir, "")).Replace(":", "-").Replace(" ", "_").Replace("\", "_")
         Copy-Item $path $newPath
+        # Write-Host "Monitor File Path:" $newPath
     }
 }
 
