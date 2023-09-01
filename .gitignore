@@ -1,6 +1,9 @@
 # 测试目录
 **/test
 
+## 本地历史
+**/history.sqlite
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
