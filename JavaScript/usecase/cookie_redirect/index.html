@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>示例页面</title>
+  </head>
+  <body>
+    <p>This is a test page.</p>
+
+    <script>
+      document.addEventListener("selectionchange", function () {
+        var selection = window.getSelection().toString();
+        document.cookie = "select=" + selection;
+      });
+      if (document.cookie.indexOf("select=test") != -1) {
+        window.location.href = "https://www.baidu.com";
+      }
+    </script>
+  </body>
+</html>
