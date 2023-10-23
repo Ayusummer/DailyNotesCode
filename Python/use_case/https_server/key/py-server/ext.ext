@@ -1,0 +1,11 @@
+basicConstraints = CA:FALSE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+extendedKeyUsage = serverAuth, clientAuth
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1 = ayusummer.com
+DNS.2 = summer.com
+IP.1 = 172.29.64.1
+IP.3 = 127.0.0.1
+
