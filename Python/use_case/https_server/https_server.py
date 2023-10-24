@@ -1,13 +1,19 @@
-import http.server
+from http.server import HTTPServer, SimpleHTTPRequestHandler
 import ssl
+from pathlib import Path
 
 server_address = ("0.0.0.0", 443)
-httpd = http.server.HTTPServer(server_address, http.server.SimpleHTTPRequestHandler)
+PEM_PATH = Path(__file__).parent / "key/py-server/summer-py-server.crt"
+KEY_PATH = Path(__file__).parent / "key/py-server/summer-py-server.key"
+
+httpd = HTTPServer(server_address, SimpleHTTPRequestHandler)
+
 httpd.socket = ssl.wrap_socket(
     httpd.socket,
+    certfile=PEM_PATH,
+    keyfile=KEY_PATH,
     server_side=True,
-    certfile="key/py-server/summer-py-server.crt",
-    keyfile="key/py-server/summer-py-server.key",
     ssl_version=ssl.PROTOCOL_TLS,
 )
+
 httpd.serve_forever()
