@@ -1,3 +1,4 @@
+# 修改响应头
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 import os
 from pathlib import Path
