@@ -1,5 +1,5 @@
 # 允许接收 post 数据, 存入当前文件所在目录下的 post_data.txt 文件中
-from http.server import BaseHTTPRequestHandler, HTTPServer
+from http.server import HTTPServer, SimpleHTTPRequestHandler
 import os
 from pathlib import Path
 
@@ -10,7 +10,7 @@ POST_DATA_FILE_PATH = Path(__file__).parent / "post_data.txt"
 SERVER_ADDRESS = ("0.0.0.0", 80)
 
 
-class CustomHTTPRequestHandler(BaseHTTPRequestHandler):
+class CustomHTTPRequestHandler(SimpleHTTPRequestHandler):
     def do_GET(self) -> None:
         return super().do_GET()
 
