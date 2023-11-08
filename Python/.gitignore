@@ -1,2 +1,4 @@
 __pypackages__/
 .pdm.toml
+
+py310
