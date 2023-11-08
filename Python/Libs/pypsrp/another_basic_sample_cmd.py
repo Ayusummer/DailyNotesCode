@@ -1,8 +1,7 @@
 from pypsrp.client import Client
+from config import SERVER, USERNAME, PASSWORD
 
-client = Client(
-    "192.168.1.219", username="ARTWinSummer\Win10Pro", password="Win10Pro", ssl=False
-)
+client = Client(server=SERVER, username=USERNAME, password=PASSWORD, ssl=False)
 
 # stdout, stderr, rc = client.execute_cmd("whoami.exe /all")
 stdout, stderr, rc = client.execute_cmd(

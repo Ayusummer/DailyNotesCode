@@ -1,10 +1,13 @@
 # 通过 PSRP 层运行一些代码的示例
 from pypsrp.client import Client
+from config import SERVER, USERNAME, PASSWORD
 
-SERVER = "192.168.1.219"
-USERNAME = "ARTWinSummer\Win10Pro"
-PASSWORD = "Win10Pro"
-client = Client(SERVER, username=USERNAME, password=PASSWORD, ssl=False)
+client = Client(
+    server=SERVER,
+    username=USERNAME,
+    password=PASSWORD,
+    ssl=False,
+)
 
 script = r"New-Item -Path C:\temp\folder -ItemType Directory -Verbose"
 output, streams, had_errors = client.execute_ps(script)

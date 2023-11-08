@@ -1,11 +1,9 @@
 # 将 basic_sample.py 转换为使用低级API的写法示例:
 from pypsrp.powershell import PowerShell, RunspacePool
 from pypsrp.wsman import WSMan
+from config import SERVER, USERNAME, PASSWORD
 
-SERVER = "192.168.1.219"
-USERNAME = "ARTWinSummer\Win10Pro"
-PASSWORD = "Win10Pro"
-wsman = WSMan(SERVER, username=USERNAME, password=PASSWORD, ssl=False)
+wsman = WSMan(server=SERVER, username=USERNAME, password=PASSWORD, ssl=False)
 
 with RunspacePool(wsman) as pool:
     ps = PowerShell(pool)
