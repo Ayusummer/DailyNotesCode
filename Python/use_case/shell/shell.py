@@ -39,9 +39,7 @@ def run_command(
 
 def main():
     # Run the command
-    exit_code, stdout, stderr = run_command(
-        command="Invoke-AtomicTest T1003-3", shell_type="powershell"
-    )
+    exit_code, stdout, stderr = run_command(command="whoami", shell_type="powershell")
 
     # Print the results
     print(f"Exit code: {exit_code}")

@@ -1,7 +1,7 @@
 import winrm
 
 # 连接到一个远程主机
-session = winrm.Session("server", auth=("user", "password"))
+session = winrm.Session("192.168.1.219", auth=("ARTWinSummer\Win10Pro", "Win10Pro"))
 # 执行一个命令
 result = session.run_cmd("Get-Process")
 # 打印输出
