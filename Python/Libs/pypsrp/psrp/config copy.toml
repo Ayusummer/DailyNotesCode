@@ -1,0 +1,3 @@
+SERVER = "server_name or IP"
+USERNAME = "domain\\user"
+PASSWORD = "password"
