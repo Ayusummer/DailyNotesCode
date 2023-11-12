@@ -44,7 +44,9 @@ sync_rps(shell_test_basic, "whoami")
 # 执行两例 Write-Host
 shell_test_twice_write_host = PowerShell(pool)
 sync_rps(shell_test_twice_write_host, "Write-Host Ayusummer;Write-Host 233;")
-# b
+# 报错测试
+shell_test_error = PowerShell(pool)
+sync_rps(shell_test_error, "whoami1")
 
 
 # 结束
