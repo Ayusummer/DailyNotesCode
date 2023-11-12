@@ -1,5 +1,46 @@
 from pypsrp.powershell import PowerShell, RunspacePool
 import logging
+import time
+from logging.handlers import RotatingFileHandler
+import os
+from pathlib import Path
+
+
+# 自定义RotatingFileHandler以添加时间戳
+class TimedRotatingFileHandler(RotatingFileHandler):
+    def __init__(
+        self, filename, maxBytes=0, backupCount=0, encoding="utf-8", delay=False
+    ):
+        """指定编码格式为utf-8, 防止中文乱码"""
+        super().__init__(
+            filename,
+            maxBytes=maxBytes,
+            backupCount=backupCount,
+            encoding=encoding,
+            delay=delay,
+        )
+
+    def doRollover(self):
+        if self.stream:
+            self.stream.close()
+            self.stream = None
+
+        current_time = time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime())
+        # 拼接原先的文件名(不包含后缀) + 时间 + .log 后缀
+        new_log_filename = (
+            f"{os.path.splitext(self.baseFilename)[0]}.{current_time}.log"
+        )
+        # new_log_filename = f"{self.baseFilename}.{current_time}"
+
+        if os.path.exists(self.baseFilename):
+            os.rename(self.baseFilename, new_log_filename)
+
+        if self.backupCount > 0:
+            for s in self.getFilesToDelete():
+                os.remove(s)
+
+        if not self.delay:
+            self.stream = self._open()
 
 
 # ANSI转义序列
@@ -22,7 +63,8 @@ class CustomFormatter(logging.Formatter):
     bright_cyan = "\x1b[96m"
     bright_white = "\x1b[97m"
     reset = "\x1b[0m"
-    format_str = "%(levelname)s: %(message)s (%(filename)s:%(lineno)d)"
+    format_str = "%(asctime)s - %(levelname)s: %(message)s (%(filename)s:%(lineno)d)"
+    date_format = "%Y-%m-%d %H:%M:%S"  # 不包含毫秒的日期格式
 
     INFO_COLORS = {
         "default": blue,
@@ -46,7 +88,7 @@ class CustomFormatter(logging.Formatter):
             info_color = getattr(record, "info_color", "default")
             color = color.get(info_color, self.gray)
         log_fmt = color + self.format_str + self.reset
-        formatter = logging.Formatter(log_fmt)
+        formatter = logging.Formatter(log_fmt, datefmt=self.date_format)
         return formatter.format(record)
 
 
@@ -62,6 +104,25 @@ logging.setLoggerClass(ColoredInfoLogger)
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
+# 设置日志文件路径
+LOG_BASIC_NAME = "basic.log"
+LOG_BASIC_PATH = Path(__file__).parent / "logs" / LOG_BASIC_NAME
+# 如果不存在logs文件夹则创建
+if not os.path.exists(LOG_BASIC_PATH.parent):
+    os.mkdir(LOG_BASIC_PATH.parent)
+# 如果没有 README.md 文件, 则新建该文件用于说明日志文件的格式
+if not os.path.exists(LOG_BASIC_PATH.parent / "README.md"):
+    with open(LOG_BASIC_PATH.parent / "README.md", "w", encoding="utf-8") as f:
+        f.write(
+            f"此文件夹用于存放日志文件, {LOG_BASIC_NAME} 为基本日志文件, {LOG_BASIC_NAME}.时间 为旧日志文件, 以此类推; 当日志文件大小超过1MB时, 会自动创建新的日志文件, 旧日志文件会被重命名为 {LOG_BASIC_NAME}.[当前时间].log\n\n"
+        )
+
+# 创建自定义的文件处理器并设置级别为DEBUG
+fh = TimedRotatingFileHandler(LOG_BASIC_PATH, maxBytes=1000000, backupCount=5)
+fh.setLevel(logging.DEBUG)
+fh.setFormatter(CustomFormatter())
+logger.addHandler(fh)
+
 # 创建控制台处理器并设置级别为DEBUG
 ch = logging.StreamHandler()
 ch.setLevel(logging.DEBUG)
@@ -70,7 +131,7 @@ logger.addHandler(ch)
 
 
 def sync_rps(runspace_pool: RunspacePool, script: str):
-    """同步执行 Powershell script"""
+    """Synchronize_RemotePowershellScript: 同步执行 Powershell script"""
     runspace = PowerShell(runspace_pool)
     runspace.add_script(script)
     logger.info(f"执行脚本：{script}")
