@@ -69,35 +69,21 @@ ch.setFormatter(CustomFormatter())
 logger.addHandler(ch)
 
 
-def sync_rps(runspace: PowerShell, script: str):
+def sync_rps(runspace_pool: RunspacePool, script: str):
     """同步执行 Powershell script"""
+    runspace = PowerShell(runspace_pool)
     runspace.add_script(script)
-    # print(f"执行脚本：{script}")
     logger.info(f"执行脚本：{script}")
     output = runspace.invoke()
     if runspace.had_errors:
-        # print(f"执行脚本 {script} 时出错")
         logger.error(f"执行脚本 {script} 时出错")
         if runspace.streams.error.__len__() > 0:
             for error in runspace.streams.error:
-                # print(f"ERROR: {error.exception}")
                 logger.error(error.exception)
     else:
         if output:
-            # print(f"OUTPUT: {output}")
             logger.info(f"OUTPUT: {output}")
         # 例如 Write-Host 的输出就会存在 information stream 中:
         if runspace.streams.information.__len__() > 0:
             for info in runspace.streams.information:
-                # print(f"INFORMATION: {info.message_data}")
                 logger.info(f"INFORMATION: {info.message_data}")
-
-
-# # 测试不同级别的日志
-# logger.debug("这是一个调试信息")
-# logger.info("这是默认颜色的INFO消息")
-# logger.info("这是绿色的INFO消息", info_color="green")
-# logger.info("这是黄色的INFO消息", info_color="yellow")
-# logger.warning("这是一个警告消息")
-# logger.error("这是一个错误消息")
-# logger.critical("这是一个严重错误消息")
