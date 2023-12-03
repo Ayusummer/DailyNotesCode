@@ -11,8 +11,15 @@ function base64Decode {
     return $decodedString
 }
 
-# 测试用例: Y2FzZGZkY3dlcg==
-$base64String = "Y2FzZGZkY3dlcg=="
-$decodedString = base64Decode $base64String
-Write-Host $decodedString
+function base64Encode {
+    param (
+        [Parameter(Mandatory = $true, Position = 0)]
+        [string]$string
+    )
+
+    $bytes = [System.Text.Encoding]::UTF8.GetBytes($string)
+    $encodedString = [System.Convert]::ToBase64String($bytes)
+    return $encodedString
+}
+
 
