@@ -29,7 +29,7 @@ public class UbuntuShell {
     }
   }
 
-  // // 一句话写法（不try catch）
+  // // 一句话写法(不try catch) 
   // public void OneLineBash(){
   //     "".getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec("ls");
   // }

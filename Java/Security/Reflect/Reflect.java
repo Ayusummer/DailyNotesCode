@@ -17,7 +17,7 @@ public class Reflect {
     }
 
     // 3.通过 Class 类的静态方法 forName(String className) 得到
-    // 该方法将类的全名（包括包名）作为参数，返回对应的 Class 对象
+    // 该方法将类的全名(包括包名) 作为参数，返回对应的 Class 对象
     // 用的最多, 但可能抛出 ClassNotFoundException 异常
     public void by_forName() throws ClassNotFoundException {
         System.out.println("3.通过 Class 类的静态方法 forName(String className) 得到");

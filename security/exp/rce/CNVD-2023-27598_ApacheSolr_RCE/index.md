@@ -12,7 +12,7 @@
 ## 利用
 
 ```bash
-# -c开启solrcloud模式，-f后台显示执行情况，-a调试参数（端口设置同idea一样）(win上始终没能跑成功)(linux上用 solr 文件跑 9.1 成功了)
+# -c开启solrcloud模式，-f后台显示执行情况，-a调试参数(端口设置同idea一样) (win上始终没能跑成功)(linux上用 solr 文件跑 9.1 成功了)
 solr.cmd start -c -f -a "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:35005"
 ./solr start -e cloud -a "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
 ```
