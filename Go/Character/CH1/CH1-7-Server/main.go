@@ -1,19 +1,33 @@
-// Server1 is a minimal "echo" server.
+// Server2 is a minimal "echo" and counter server.
 package main
 
 import (
-    "fmt"
-    "log"
-    "net/http"
+	"fmt"
+	"log"
+	"net/http"
+	"sync"
 )
 
-// handler echoes the Path component of the request URL r.
+var mu sync.Mutex
+var count int
+
+// handler echoes the Path component of the requested URL.
 func handler(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "URL.Path = %q\n", r.URL.Path)
+	mu.Lock()
+	count++
+	mu.Unlock()
+	fmt.Fprintf(w, "URL.Path = %q\n", r.URL.Path)
+}
+
+// counter echoes the number of calls so far.
+func counter(w http.ResponseWriter, r *http.Request) {
+	mu.Lock()
+	fmt.Fprintf(w, "Count %d\n", count)
+	mu.Unlock()
 }
 
 func main() {
-    http.HandleFunc("/", handler) // each request calls handler
-    log.Fatal(http.ListenAndServe("localhost:8000", nil))
+	http.HandleFunc("/", handler)
+	http.HandleFunc("/count", counter)
+	log.Fatal(http.ListenAndServe("localhost:8000", nil))
 }
-
