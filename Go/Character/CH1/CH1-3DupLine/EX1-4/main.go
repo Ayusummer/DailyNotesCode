@@ -19,6 +19,25 @@ func countLines(f *os.File, counts map[string]int) {
 	// 注意: 忽略input.Err()中可能的错误
 }
 
+// 统计标准输入或文件中重复的行(不做停止判断)
+func countLines_alter(f *os.File, counts map[string]int) {
+	input := bufio.NewScanner(f)
+	for input.Scan() {
+	// 遇到 -1 时, input.Scan() 退出循环
+	if input.Text() == "-1" {
+		break
+	}
+		counts[input.Text()]++
+	}
+	// 注意: 忽略input.Err()中可能的错误
+	// 打印重复行
+	for line, n := range counts {
+		if n > 1 {
+			fmt.Printf("重复次数: %d\t重复行: %s\n", n, line)
+		}
+	}
+}
+
 // 读取标准输入或是使用 os.Open 打开各个具名文件，并操作它们
 // 练习 1.4:  修改 dup2, 出现重复的行时打印文件名称
 func Dup2_alter() {
@@ -47,4 +66,5 @@ func Dup2_alter() {
 
 func main() {
 	Dup2_alter()
+	// countLines_alter(os.Stdin, make(map[string]int))
 }
