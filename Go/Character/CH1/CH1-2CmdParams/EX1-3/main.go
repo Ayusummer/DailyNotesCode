@@ -44,6 +44,16 @@ func Echo_direct_print_slice() {
 // 定义一个函数类型
 type EchoFuncType func()
 
+func CalcEchoTimeWithTimes(f EchoFuncType, times int) {
+	// 获取当前时间
+	start := time.Now()
+	for i := 0; i < times; i++ {
+		f()
+	}
+	fmt.Println("执行时间(ms):", time.Since(start).Milliseconds())
+	fmt.Println("执行时间(ns):", time.Since(start).Nanoseconds())
+}
+
 // 定义一个函数用于执行一个函数并计算执行时间
 func CalcEchoTime(f EchoFuncType) {
 	// 获取当前时间
@@ -82,6 +92,12 @@ func main() {
 	// CalcEchoTime(Echo_Join)
 	// CalcEchoTime(Echo_direct_print_slice)
 	// 比较多个函数执行时间
-	func_names := []string{"Print_cmd_args", "Echo_Slice", "Echo_Join", "Echo_direct_print_slice"}
-	CompareEchoFunsExecTime(10000, func_names, Print_cmd_args, Echo_Slice, Echo_Join, Echo_direct_print_slice)
+	// func_names := []string{"Print_cmd_args", "Echo_Slice", "Echo_Join", "Echo_direct_print_slice"}
+	// CompareEchoFunsExecTime(1000000, func_names, Print_cmd_args, Echo_Slice, Echo_Join, Echo_direct_print_slice)
+	start := time.Now()
+	for i := 0; i < 10000; i++ {
+		fmt.Println(strings.Join(os.Args[1:], " "))
+	}
+	// 获取执行时间, 精确到毫秒
+	fmt.Println("执行时间(ms):", time.Since(start).Milliseconds())
 }
