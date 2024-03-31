@@ -26,8 +26,13 @@ func counter(w http.ResponseWriter, r *http.Request) {
 	mu.Unlock()
 }
 
+func counter_prefixtest(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "URL.Path = %q\n by counter_prefixtest", r.URL.Path)
+}
+
 func main() {
 	http.HandleFunc("/", handler)
 	http.HandleFunc("/count", counter)
+	http.HandleFunc("/count/", counter_prefixtest)
 	log.Fatal(http.ListenAndServe("localhost:8000", nil))
 }
