@@ -92,12 +92,12 @@ func main() {
 	// CalcEchoTime(Echo_Join)
 	// CalcEchoTime(Echo_direct_print_slice)
 	// 比较多个函数执行时间
-	// func_names := []string{"Print_cmd_args", "Echo_Slice", "Echo_Join", "Echo_direct_print_slice"}
-	// CompareEchoFunsExecTime(1000000, func_names, Print_cmd_args, Echo_Slice, Echo_Join, Echo_direct_print_slice)
-	start := time.Now()
-	for i := 0; i < 10000; i++ {
-		fmt.Println(strings.Join(os.Args[1:], " "))
-	}
-	// 获取执行时间, 精确到毫秒
-	fmt.Println("执行时间(ms):", time.Since(start).Milliseconds())
+	func_names := []string{"Print_cmd_args", "Echo_Slice", "Echo_Join", "Echo_direct_print_slice"}
+	CompareEchoFunsExecTime(10, func_names, Print_cmd_args, Echo_Slice, Echo_Join, Echo_direct_print_slice)
+	// start := time.Now()
+	// for i := 0; i < 10000; i++ {
+	// 	fmt.Println(strings.Join(os.Args[1:], " "))
+	// }
+	// // 获取执行时间, 精确到毫秒
+	// fmt.Println("执行时间(ms):", time.Since(start).Milliseconds())
 }
