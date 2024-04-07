@@ -1,3 +1,6 @@
+client/resource_hacker/*
+client/stash/*
+
 *.exe
 *.pdf
 *.json
