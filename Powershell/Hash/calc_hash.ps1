@@ -1,5 +1,5 @@
 # 替换为您要计算 MD5 的文件路径
-$filePath = "E:\DownloadFile\xiaomi.eu_multi_RUBENS_V14.0.4.0.TLNCNXM_v14-13-fastboot.zip" 
+$filePath = "D:\Repo\Github\Self\DailyNotesCode\Powershell\Hash\calc_hash.ps1"
 
 # 使用 Get-FileHash 计算 MD5 哈希
 $md5Hash = Get-FileHash -Path $filePath -Algorithm MD5
