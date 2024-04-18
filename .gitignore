@@ -1,5 +1,6 @@
 # 测试目录
 **/test
+**/tmp
 
 ## 本地历史
 **/history.sqlite
