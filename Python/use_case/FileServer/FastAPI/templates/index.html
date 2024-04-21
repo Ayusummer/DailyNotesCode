@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>File Upload and Download</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Upload File</h1>
     <form action="/uploadfile/" enctype="multipart/form-data" method="post">
-        <input type="file" name="file">
-        <input type="submit" value="Upload">
+      <input type="file" name="file" />
+      <input type="submit" value="Upload" />
     </form>
 
     <h1>Download Files</h1>
     <ul>
-        {% for file in files %}
-            <li><a href="/download/{{ file }}">{{ file }}</a></li>
-        {% endfor %}
+      {% for file in files %}
+      <li><a href="/download/{{ file }}">{{ file }}</a></li>
+      {% endfor %}
     </ul>
-</body>
+    <li></li>
+  </body>
 </html>
