@@ -13,7 +13,7 @@ import (
 func main() {
 	conn, err := net.Dial("tcp", "127.0.0.1:65521")
 	if err != nil {
-		fmt.Println(err)
+		// fmt.Println(err)
 		return
 	}
 	for {
