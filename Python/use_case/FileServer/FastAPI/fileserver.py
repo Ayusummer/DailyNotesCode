@@ -11,16 +11,20 @@ app = FastAPI()
 BASE_DIR = Path(__file__).resolve().parent
 UPLOAD_DIRECTORY = BASE_DIR / "uploads"
 UPLOAD_DIRECTORY.mkdir(exist_ok=True)
-UVICORN_LOG_CONFIG_JSON_PATH = Path(__file__).parent / "uvicorn_logger_config.json"
+STATIC_DIRECTORY = BASE_DIR / "static"
+STATIC_DIRECTORY.mkdir(exist_ok=True)
+TEMPLATES_DIRECTORY = BASE_DIR / "templates"
+TEMPLATES_DIRECTORY.mkdir(exist_ok=True)
+UVICORN_LOG_CONFIG_JSON_PATH = BASE_DIR / "uvicorn_logger_config.json"
 
 # 静态文件和模板
-app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
-templates = Jinja2Templates(directory=BASE_DIR / "templates")
+app.mount("/static", StaticFiles(directory=STATIC_DIRECTORY), name="static")
+templates = Jinja2Templates(directory=TEMPLATES_DIRECTORY)
 
 
 @app.get("/", response_class=HTMLResponse)
 async def main(request: Request):
-    files = [file.name for file in UPLOAD_DIRECTORY.iterdir() if file.is_file()]
+    files = [str(file.relative_to(UPLOAD_DIRECTORY)) for file in UPLOAD_DIRECTORY.rglob('*') if file.is_file()]
     return templates.TemplateResponse(
         "index.html", {"request": request, "files": files}
     )
@@ -34,9 +38,9 @@ async def create_upload_file(file: UploadFile = File(...)):
     return {"info": f"file '{file.filename}' saved at '{file_location}'"}
 
 
-@app.get("/download/{filename}")
-async def download_file(filename: str):
-    file_location = UPLOAD_DIRECTORY / filename
+@app.get("/download/{file_path:path}")
+async def download_file(file_path: str):
+    file_location = UPLOAD_DIRECTORY / Path(file_path)
     if file_location.exists():
         return FileResponse(str(file_location))
     return {"error": "File not found"}
