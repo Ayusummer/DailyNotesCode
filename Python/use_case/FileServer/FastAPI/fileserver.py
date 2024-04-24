@@ -11,6 +11,7 @@ app = FastAPI()
 BASE_DIR = Path(__file__).resolve().parent
 UPLOAD_DIRECTORY = BASE_DIR / "uploads"
 UPLOAD_DIRECTORY.mkdir(exist_ok=True)
+UVICORN_LOG_CONFIG_JSON_PATH = Path(__file__).parent / "uvicorn_logger_config.json"
 
 # 静态文件和模板
 app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
@@ -43,4 +44,8 @@ async def download_file(filename: str):
 
 if __name__ == "__main__":
 
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(
+        app, host="0.0.0.0", port=8000, log_config=str(UVICORN_LOG_CONFIG_JSON_PATH)
+    )
+
+# 
