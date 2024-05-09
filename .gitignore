@@ -2,6 +2,10 @@
 **/test
 **/tmp
 
+# 归档压缩文件
+**/*.7z
+
+
 ## 本地历史
 **/history.sqlite
 
